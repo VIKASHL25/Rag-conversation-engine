@@ -112,7 +112,7 @@ with st.sidebar:
         st.session_state.store[session_id] = ChatMessageHistory()
         st.rerun()
 
-st.markdown('<h1 class="hero-text">Intelligence Flow</h1>', unsafe_allow_html=True)
+st.markdown('<h1 class="hero-text">⚡IntelFlow</h1>', unsafe_allow_html=True)
 st.markdown("<p style='text-align:center; color:#64748b; font-size:0.9rem;'>Streaming RAG Intelligence</p>", unsafe_allow_html=True)
 
 if session_id in st.session_state.store:

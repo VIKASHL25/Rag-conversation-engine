@@ -18,3 +18,5 @@ venv.bak/
 
 # Temp files
 temp_*
+
+appconver.py
