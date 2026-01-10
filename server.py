@@ -134,7 +134,7 @@ if session_id in st.session_state.store:
 user_input = st.chat_input("Analyze documents...")
 
 if api_key:
-    llm = ChatGroq(groq_api_key=api_key, model_name="llama-3.1-8b-instant", streaming=True)
+    llm = ChatGroq(groq_api_key=api_key, model_name="llama-3.3-70b-versatile", streaming=True)
 
     def get_session_history(session: str) -> BaseChatMessageHistory:
         if session_id not in st.session_state.store:
