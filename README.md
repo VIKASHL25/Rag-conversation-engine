@@ -1,4 +1,4 @@
-# Intelligence Flow 💎
+# Intelligence Flow: RAG Converstaion
 
 Intelligence Flow is a professional RAG (Retrieval-Augmented Generation) chatbot designed for analyzing PDF documents. It features a sleek, glassmorphic UI and uses advanced streaming responses to provide real-time intelligence from your documents.
 
