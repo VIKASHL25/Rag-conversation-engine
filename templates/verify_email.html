@@ -1,15 +1,161 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Email Verification | IntelFlow</title>
-    <link rel="stylesheet" href="/static/style.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===============================
+           GLOBAL RESET
+        =================================*/
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: #ffffff;
+
+            /* Animated Gradient Background */
+            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1a1a2e);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        /* Gradient Animation */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* ===============================
+           CONTAINER
+        =================================*/
+        .auth-container {
+            text-align: center;
+            animation: fadeSlideUp 1s ease forwards;
+            opacity: 0;
+        }
+
+        /* Fade + Slide Animation */
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===============================
+           GLASS CARD
+        =================================*/
+        .auth-card {
+            padding: 45px 40px;
+            width: 380px;
+            backdrop-filter: blur(18px);
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+
+            /* Floating Animation */
+            animation: floatCard 4s ease-in-out infinite;
+        }
+
+        @keyframes floatCard {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* ===============================
+           TEXT STYLES
+        =================================*/
+        .success-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            background: linear-gradient(90deg, #00f5ff, #8a2be2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .auth-card p {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            line-height: 1.6;
+        }
+
+        .error-text {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+        }
+
+        /* ===============================
+           BUTTON
+        =================================*/
+        .primary-btn {
+            margin-top: 10px;
+            padding: 14px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #ffffff;
+            background: linear-gradient(90deg, #00f5ff, #8a2be2);
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4);
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.6);
+        }
+
+        .primary-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* ===============================
+           RESPONSIVE
+        =================================*/
+        @media (max-width: 480px) {
+            .auth-card {
+                width: 90%;
+                padding: 30px 20px;
+            }
+
+            .success-title {
+                font-size: 1.5rem;
+            }
+        }
+
+    </style>
 </head>
 <body>
 
 <div class="auth-container">
-    <div class="auth-card center">
+    <div class="auth-card">
         <h2 class="success-title">📩 Check Your Email</h2>
-        <p>Please click the verification link sent to your email.</p>
+        <p>Please click the verification link sent to your email to activate your IntelFlow account.</p>
 
         {% if error %}
             <p class="error-text">{{ error }}</p>

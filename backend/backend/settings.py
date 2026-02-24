@@ -15,7 +15,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['.onrender.com']
+ALLOWED_HOSTS = ['.onrender.com','127.0.0.1', 'localhost']
 CSRF_TRUSTED_ORIGINS = ['https://*.onrender.com']
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
@@ -106,8 +106,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR.parent / 'static']
+STATIC_URL = ''
+STATICFILES_DIRS = []
 
 #Email smtp setup here 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -119,5 +119,5 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
