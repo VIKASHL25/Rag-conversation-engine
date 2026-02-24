@@ -19,6 +19,25 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_core.messages import HumanMessage, AIMessage
 
+
+load_dotenv("../.env")
+DJANGO_BASE_URL=os.getenv("DJANGO_BASE_URL")
+
+query_params=st.query_params
+session_key=query_params.get("session")
+
+if not session_key:
+    st.error("Unauthorized Access")
+    st.stop()
+
+response=requests.get(
+    f"{DJANGO_BASE_URL}/validate-session/",params={"session":session_key}
+)
+
+if not response.json().get("valid"):
+    st.error("Session Invalid")
+    st.stop()
+
 st.set_page_config(page_title="Intelligence Flow", page_icon="💎", layout="wide")
 
 def apply_professional_ui():
@@ -60,10 +79,25 @@ def apply_professional_ui():
     }
                 
     .hero-text .emoji {
-    -webkit-text-fill-color: initial;
-    background: none;
+        -webkit-text-fill-color: initial;
+        background: none;
+    }
+    .logout-container div.stButton > button {
+        background: linear-gradient(135deg, #ef4444, #dc2626);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        padding: 0.6rem 1rem;
+        font-weight: 600;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
     }
 
+    .logout-container div.stButton > button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(239, 68, 68, 0.5);
+        background: linear-gradient(135deg, #dc2626, #b91c1c);
+    }
 
     /* Clean Input */
     .stChatInputContainer { background: transparent !important; }
@@ -94,7 +128,16 @@ def apply_professional_ui():
 
 apply_professional_ui()
 
-load_dotenv()
+
+with st.sidebar:
+    st.markdown('<div class="logout-container">', unsafe_allow_html=True)
+    logout_clicked = st.button("Logout",key="logout_btn")
+    st.markdown('</div>', unsafe_allow_html=True)
+
+    if logout_clicked:
+        st.markdown(f"[Click here to Logout]({DJANGO_BASE_URL}/logout/)")
+        st.stop()
+
 os.environ["HF_TOKEN"] = os.getenv("HF_TOKEN")
 
 @st.cache_resource
@@ -106,6 +149,8 @@ embeddings = get_embeddings()
 if "store" not in st.session_state:
     st.session_state.store = {}
 
+
+
 with st.sidebar:
     st.markdown("### Workspace")
     api_key = st.text_input("Groq API Key", type="password")
@@ -114,7 +159,7 @@ with st.sidebar:
     st.markdown("---")
     uploaded_files = st.file_uploader("Knowledge Base (PDF)", type="pdf", accept_multiple_files=True)
     
-    if st.button("Reset Session"):
+    if st.button("Reset Session",key="reset_btn"):
         st.session_state.store[session_id] = ChatMessageHistory()
         st.rerun()
 
@@ -205,3 +250,4 @@ if api_key:
 else:
     if user_input:
         st.warning("Please enter your Groq API Key.")
+        

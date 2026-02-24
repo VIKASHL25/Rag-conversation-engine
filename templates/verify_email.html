@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Email Verification | IntelFlow</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="auth-container">
+    <div class="auth-card center">
+        <h2 class="success-title">📩 Check Your Email</h2>
+        <p>Please click the verification link sent to your email.</p>
+
+        {% if error %}
+            <p class="error-text">{{ error }}</p>
+        {% endif %}
+
+        <a href="/" class="primary-btn">Back to Login</a>
+    </div>
+</div>
+
+</body>
+</html>
