@@ -5,6 +5,8 @@
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.32+-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io/)
 [![LangChain](https://img.shields.io/badge/LangChain-🦜-black?style=for-the-badge)](https://www.langchain.com/)
 [![Groq](https://img.shields.io/badge/Groq-⚡-orange?style=for-the-badge)](https://groq.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+
 
 **IntelFlow** is a professional-grade, full-stack Conversational RAG (Retrieval-Augmented Generation) system. It combines a robust **Django** backend for secure session management and authentication with a state-of-the-art **Streamlit** frontend featuring a premium glassmorphic UI. The system allows users to upload PDF documents and engage in context-aware, history-persistent conversations powered by the **Llama-3.3-70B** model via Groq.
 
