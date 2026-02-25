@@ -37,7 +37,6 @@
 ### Backend (Security & Logic)
 - **Django**: User management, Authentication, and Session API.
 - **MongoDB (Djongo)**: Primary database for user records and sessions.
-- **Gunicorn**: Production WSGI HTTP Server.
 
 ### AI/ML (Intelligence)
 - **LangChain**: Orchestration of RAG pipelines and chat history.
